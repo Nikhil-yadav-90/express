@@ -1,0 +1,67 @@
+<%- include('header.ejs')%>
+
+
+<!-- Your Snippet  -->
+
+
+<div class="container" id="LoginForm">
+   <div class="login-form">
+   <div class="main-div">
+       <div class="panel">
+      <h2>Sign Up Form </h2>
+      <p>Please Sign Up For Registration </p>
+      </div>
+       <form action="/signup"  id="Login" method="POST">
+         <% if(msg !=''){ %>
+            <div class="alert alert-success" role="alert">
+              
+               <p >
+                  <%= msg%>
+               </p>
+           
+            </div>
+            <%}%>
+           <div class="form-group">
+   
+   
+               <input type="text" class="form-control" id="inputEmail" placeholder="User Name" name="username">
+   
+           </div>
+           <div class="form-group">
+   
+   
+            <input type="email" class="form-control" id="inputEmail" placeholder="Your Email Id" name="userEmail">
+
+        </div>
+   
+           <div class="form-group">
+   
+               <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+   
+           </div>
+
+           <div class="form-group">
+   
+            <input type="password" class="form-control" id="inputPassword" placeholder="Confirm Password" name="cnfpassword">
+
+        </div>
+           <div class="forgot">
+             <p>Already Registered  <a href="/">Sign In</a> Here</p>
+           
+   </div>
+           <button type="submit" class="btn btn-primary">Sign Up </button>
+   
+       </form>
+       </div>
+
+   </div></div></div>
+
+
+
+
+
+
+<!-- End OF Your Snippet -->
+
+
+<%- include('footer.ejs')%>

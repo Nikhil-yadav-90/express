@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/dashboard">Password Managment System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class=" nav navbar-nav">
+        <li class="">
+          <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Password Catagory 
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/addcatagory">Add New Catagory</a>
+              <a class="dropdown-item" href="/catagory">View All Catagory </a>
+            </div>
+          </li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Password Details
+          </a>
+          <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/addpassword">Add New Password</a>
+            <a class="dropdown-item" href="/view-all-password">View All Password</a>
+          </div>
+        </li>
+        
+        <li class="navbar-right">
+          <a class="nav-link navbar-right" href="/logout">LogOut<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <div class="navbar-header" ><a style="float:right;color:brown" class="navbar-brand" href="#">Logged in As: <strong><%if(loginUser){%><%= loginUser%><%}%> </a></div>
+    </div>
+  </nav>

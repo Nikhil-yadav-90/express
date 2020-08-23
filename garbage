@@ -1,0 +1,51 @@
+// Signup Route 
+
+
+ var username = req.body.name;
+  var email = req.body.email;
+  var password = req.body.password;
+  var cnfPassword = req.body.cnfPassword;
+  password = bcrpyt.hashSync(password,15);
+
+  var userDetail = new userModel({
+    username: username,
+    email: email,
+    password: password
+
+  });
+
+  userDetail.save(function (err, res1) {
+    if (err) throw err;
+    res.render('signup', {
+      title: "SignUp Page",err:err,
+      msg:"User Registered Sucessfully"
+    });
+  });
+
+
+
+
+  // Home Route 
+
+   var chckUser = userModel.findOne({username:req.body.username});
+
+  chckUser.exec(function(err,data){
+    if(err) throw err;
+    console.log(data.password);
+  console.log( bcrpyt.compareSync(req.body.password,data.password)); // taking first parameter from the form and another form the database
+  });
+
+
+
+
+ userDetail.exec(function(err,doc){
+    if (err) throw err;
+
+    console.log(doc);
+    if(doc.username==''){
+      res.render('index', {
+        title: 'Login Page',
+        msg:'No User Found'
+      });
+    }
+    })
