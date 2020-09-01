@@ -1,10 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var app = express();
 var userModel = require('../modules/User');
 var passCatagoryModel = require('../modules/Password');
 var passDetailModel = require('../modules/addPassword');
 var bcrpyt = require('bcrypt');
 var jwt = require('jsonwebtoken');
+
+
+
 
 
 if (typeof localStorage === "undefined" || localStorage === null) {
@@ -34,23 +38,34 @@ function chckEmail(req,res,next){
   
 };
 
-function chckUser(req,res,next){
+async function chckUser(req,res,next){
   var user = req.body.username;
-  var chckExistsUser = userModel.findOne({username:user});
-  chckExistsUser.exec(function(err,doc){
-    if(err) throw err;
-    if(doc){
-      return res.render('signup', {
-       title: "SignUp Page",err:'',
-       msg:"User Already Exists"
-     });
-    }
-    
+  var chckExistsUser = await userModel.findOne({username:user});
+  console.log(chckExistsUser);
+  if(chckExistsUser!=null){
+    return res.render('signup', {
+      title: "SignUp Page",err:'',
+      msg:"User Already Exists"
+    });
+  }
+
   next();
-  })
+  // chckExistsUser.exec(function(err,doc){
+  //   if(err) throw err;
+  //   if(doc){
+  //     return res.render('signup', {
+  //      title: "SignUp Page",err:'',
+  //      msg:"User Already Exists"
+  //    });
+  //   }
+    
+  // next();
+  // })
   
   
 };
+
+
 
 
 function checkLoginUser(req,res,next){
@@ -130,7 +145,7 @@ router.get('/signup',function (req, res) {
 
 
 //  SignUp  Post Route For registring New User 
-router.post('/signup',chckEmail,chckUser, function (req, res) {
+router.post('/signup',chckUser,chckEmail, function (req, res) {
 
  // Hashing Input Password so we could not get exact password in database
 
@@ -385,5 +400,6 @@ router.get('/logout',function(req,res){
   localStorage.removeItem('loginUser');
   res.redirect('/');
 });
+
 
 module.exports = router;
