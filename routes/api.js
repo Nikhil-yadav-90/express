@@ -6,7 +6,7 @@ const indexController = require('../api/Controllers/indexController')
 const loginController = require('../api/Controllers/loginController');
 const catagoryController = require('../api/Controllers/catagoryController');
 const passwordController = require('../api/Controllers/passwordController');
-
+const experimentController = require('../api/Controllers/experimentController');
 // Data Layers For Buisness Computation 
 
 
@@ -39,6 +39,8 @@ router.put('/password/',passwordController.update);
 
 
 
+// Experiment Api 
 
+router.get('/experiment',experimentController.detail);
 
 module.exports = router;
